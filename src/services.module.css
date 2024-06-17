@@ -1,0 +1,443 @@
+header {
+    margin-inline: auto;
+    max-width: 1280px;
+    margin-top: 224px;
+    display: flex;
+    max-width: 1320px;
+    justify-content: space-between;
+    align-items: start;
+}
+
+p.service__header__text {
+    color: var(--Snow-White, #fff);
+    font-family: "Neue Montreal";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 64px */
+    max-width: 760px;
+    text-align: left;
+}
+
+header > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+header > div > h2 {
+    color: var(--Snow-White, #fff);
+
+    font-size: 160px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140px; /* 87.5% */
+}
+
+header > div > p {
+    max-width: 312px;
+    text-align: left;
+    color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 25.6px */
+}
+
+section {
+    max-width: 1280px;
+    margin-inline: auto;
+}
+
+.service_title {
+    position: sticky;
+    margin-top: 100px;
+    top: 5vh;
+    z-index: 100;
+    margin-bottom: 40px;
+    display: flex;
+    max-width: 1320px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    color: var(--Snow-White, #fff);
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.service_heading {
+    margin-top: 60px;
+    display: flex;
+    max-width: 1320px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.service_heading h2 {
+    color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+    font-family: "Neue Montreal";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.service_heading p {
+    color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+    text-align: right;
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+section {
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.seperator {
+    width: 100%;
+    max-width: 1320px;
+    height: 1px;
+    background: var(--snow-white-10, rgba(255, 255, 255, 0.1));
+}
+
+.seperator_footer {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1320px;
+    height: 1px;
+    background: var(--snow-white-10, rgba(255, 255, 255, 0.1));
+
+    animation: progressBar linear;
+    animation-timeline: view();
+    animation-range: contain;
+    opacity: 0;
+}
+
+.services_container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.service_footer {
+    position: sticky;
+    bottom: 5vh;
+    background-color: #000000;
+    margin-top: 40px;
+    display: flex;
+    max-width: 1320px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    animation: progressBar linear;
+    animation-timeline: view();
+    animation-range: contain;
+    opacity: 0;
+}
+
+.service_footer h2 {
+    color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.service_footer p {
+    color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+    text-align: right;
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.scroll_progress {
+    color: var(--Snow-White, #fff);
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.service {
+    opacity: 0;
+    animation: fade-in-out linear;
+    animation-timeline: view();
+    animation-range: 10px;
+}
+
+@-webkit-keyframes fade-in-out {
+    20% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in-out {
+    20% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes progressBar {
+    50% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+}
+
+@keyframes progressBar {
+    50% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes change-styles-h2 {
+    40% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        font-family: "Neue Montreal";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    48% {
+        color: var(--Snow-White, #fff);
+        font-family: "Neue Montreal";
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    52% {
+        color: var(--Snow-White, #fff);
+        font-family: "Neue Montreal";
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    60% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        font-family: "Neue Montreal";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+
+@keyframes change-styles-h2 {
+    40% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        font-family: "Neue Montreal";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    48% {
+        color: var(--Snow-White, #fff);
+        font-family: "Neue Montreal";
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    52% {
+        color: var(--Snow-White, #fff);
+        font-family: "Neue Montreal";
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    60% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        font-family: "Neue Montreal";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+
+@keyframes change-styles-p {
+    40% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        text-align: right;
+        font-family: "Neue Montreal";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    50% {
+        color: var(--Snow-White, #fff);
+        text-align: right;
+        font-family: "Neue Montreal";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    60% {
+        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
+        text-align: right;
+        font-family: "Neue Montreal";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+
+.animatedStyleH2 {
+    animation: change-styles-h2 linear;
+    animation-timeline: view();
+    animation-range: contain;
+}
+
+.animatedStyleP {
+    animation: change-styles-p linear;
+    animation-timeline: view();
+    animation-range: contain;
+}
+
+.plus {
+    font-family: "Neue Montreal";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140px;
+    vertical-align: text-top;
+}
+
+@media only screen and (max-width: 1440px) {
+    .service__section {
+        padding-inline: 20px;
+    }
+
+    p.service__header__text {
+        font-size: 42px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    p.service__header__text {
+        font-size: 32px;
+        max-width: 600px;
+    }
+
+    header > div > h2 {
+        color: var(--Snow-White, #fff);
+
+        font-size: 120px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140px; /* 87.5% */
+    }
+
+    .plus {
+        line-height: 100px;
+        font-size: 50px;
+        vertical-align: text-top;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    header {
+        flex-direction: column-reverse;
+    }
+
+    p.service__header__text {
+        font-size: 32px;
+        max-width: 100%;
+    }
+
+    header > div {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+        grid-area: 20px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+}
+
+@media only screen and (max-width: 600px) {
+    p.service__header__text {
+        color: var(--Snow-White, #fff);
+        font-family: "Neue Montreal";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%; /* 28.8px */
+    }
+
+    header > div > h2 {
+        color: var(--Snow-White, #fff);
+        font-size: 64px;
+    }
+
+    header > div {
+        gap: 8px;
+    }
+
+    .plus {
+        line-height: 40px;
+        font-size: 32px;
+    }
+
+    .service__section {
+        padding-inline: 10px;
+    }
+
+    header > div > p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+}

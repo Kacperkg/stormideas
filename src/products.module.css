@@ -1,0 +1,80 @@
+.products {
+    margin-top: 320px;
+}
+
+.products > h2 {
+    margin-left: 60px;
+    max-width: 648px;
+    color: var(--Snow-White, #fff);
+    font-family: "Neue Montreal";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 64px */
+    text-align: left;
+}
+
+.product__container {
+    margin-top: 80px;
+    width: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 1.45/1;
+    width: 80vw;
+    height: auto;
+    padding: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.product > div {
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.product > div > p {
+    max-width: 275px;
+    color: var(--Snow-White, #fff);
+    font-family: "Neue Montreal";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 32px */
+}
+
+.product a {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: fit-content;
+    height: 64px;
+    padding: 24px 48px;
+    border-radius: 100px;
+    background: var(--Snow-White, #fff);
+
+    color: var(--Jet-Black, #000);
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.container {
+    overscroll-behavior: none;
+    width: 600%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}

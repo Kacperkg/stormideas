@@ -1,0 +1,36 @@
+nav {
+    margin-inline: auto;
+    max-width: 1280px;
+    width: 90vw;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menuButton {
+    width: 64px;
+    height: 64px;
+    position: relative;
+}
+
+.menuButtonDot {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    z-index: 20;
+}
+
+@media only screen and (max-width: 1000px) {
+    .logo,
+    .menu p {
+        visibility: hidden !important;
+    }
+}
