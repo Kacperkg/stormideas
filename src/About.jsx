@@ -13,10 +13,13 @@ export default function About() {
         <div className={Styles.about} style={{ marginLeft: scrollAmount * 0 }}>
             <div className={Styles.about__container}>
                 <p>
-                    As passionate, enthusiast teams and individuals, we aim to
-                    create something truly exceptional for others. By blending
-                    our best professional skills discussions, and empathy, we
-                    fostered a unique and collaborative environment for our
+                    As passionate, enthusiast teams and
+                    <img src={layer1}></img>
+                    individuals, we aim to create something truly exceptional
+                    for others. By blending our best professional skills
+                    <img src={layer2}></img>
+                    discussions, and empathy, we fostered a unique and
+                    <img src={layer3}></img>collaborative environment for our
                     colleagues.
                 </p>
             </div>
