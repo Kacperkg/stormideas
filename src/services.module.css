@@ -11,7 +11,7 @@ header {
 p.service__header__text {
     color: var(--Snow-White, #fff);
     font-family: "Neue Montreal";
-    font-size: 40px;
+    font-size: clamp(18px, 3vw, 40px);
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 64px */
@@ -83,7 +83,7 @@ section {
 .service_heading h2 {
     color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
     font-family: "Neue Montreal";
-    font-size: 40px;
+    font-size: clamp(20px, 8vw, 40px);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -235,7 +235,7 @@ section {
     40% {
         color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
         font-family: "Neue Montreal";
-        font-size: 40px;
+        font-size: clamp(20px, 12vw, 40px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -243,7 +243,7 @@ section {
     48% {
         color: var(--Snow-White, #fff);
         font-family: "Neue Montreal";
-        font-size: 80px;
+        font-size: clamp(40px, 12vw, 80px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -251,7 +251,7 @@ section {
     52% {
         color: var(--Snow-White, #fff);
         font-family: "Neue Montreal";
-        font-size: 80px;
+        font-size: clamp(40px, 12vw, 80px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -259,7 +259,7 @@ section {
     60% {
         color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
         font-family: "Neue Montreal";
-        font-size: 40px;
+        font-size: clamp(20px, 12vw, 40px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -270,7 +270,7 @@ section {
     40% {
         color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
         font-family: "Neue Montreal";
-        font-size: 40px;
+        font-size: clamp(20px, 12vw, 40px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -278,7 +278,7 @@ section {
     48% {
         color: var(--Snow-White, #fff);
         font-family: "Neue Montreal";
-        font-size: 80px;
+        font-size: clamp(40px, 12vw, 80px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -286,7 +286,7 @@ section {
     52% {
         color: var(--Snow-White, #fff);
         font-family: "Neue Montreal";
-        font-size: 80px;
+        font-size: clamp(40px, 12vw, 80px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -294,7 +294,7 @@ section {
     60% {
         color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
         font-family: "Neue Montreal";
-        font-size: 40px;
+        font-size: clamp(20px, 12vw, 40px);
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -356,18 +356,9 @@ section {
     .service__section {
         padding-inline: 20px;
     }
-
-    p.service__header__text {
-        font-size: 42px;
-    }
 }
 
 @media only screen and (max-width: 1200px) {
-    p.service__header__text {
-        font-size: 32px;
-        max-width: 600px;
-    }
-
     header > div > h2 {
         color: var(--Snow-White, #fff);
 
@@ -382,24 +373,23 @@ section {
         font-size: 50px;
         vertical-align: text-top;
     }
-}
-
-@media only screen and (max-width: 1000px) {
-    header {
-        flex-direction: column-reverse;
-    }
-
-    p.service__header__text {
-        font-size: 32px;
-        max-width: 100%;
-    }
 
     header > div {
         flex-direction: row;
         align-items: center;
         justify-content: center;
         margin-bottom: 40px;
-        grid-area: 20px;
+        gap: 20px;
+    }
+
+    p.service__header__text {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    header {
+        flex-direction: column-reverse;
     }
 }
 
@@ -407,22 +397,13 @@ section {
 }
 
 @media only screen and (max-width: 600px) {
-    p.service__header__text {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 160%; /* 28.8px */
-    }
-
     header > div > h2 {
         color: var(--Snow-White, #fff);
-        font-size: 64px;
+        font-size: 80px;
     }
 
     header > div {
-        gap: 8px;
+        gap: 12px;
     }
 
     .plus {
@@ -436,6 +417,7 @@ section {
 
     header > div > p {
         font-size: 14px;
+        max-width: 29ch;
     }
 }
 

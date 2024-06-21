@@ -24,7 +24,7 @@ header > p {
     max-width: 648px;
     color: var(--Snow-White, #fff);
     font-family: "Neue Montreal";
-    font-size: 40px;
+    font-size: clamp(18px, 3vw, 40px);
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 64px */
@@ -57,7 +57,7 @@ aside {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--VIvid-Red, #e03749);
     font-family: "Neue Montreal";
-    font-size: 160px;
+    font-size: clamp(80px, 8vw, 160px);
     font-style: normal;
     font-weight: 400;
     line-height: 140px; /* 87.5% */
@@ -67,10 +67,10 @@ aside {
 .plus {
     color: var(--VIvid-Red, #e03749);
     font-family: "Neue Montreal";
-    font-size: 80px;
+    font-size: clamp(32px, 4vw, 80px);
     font-style: normal;
     font-weight: 400;
-    line-height: 140px;
+    line-height: clamp(40px, 1rem, 20px);
     vertical-align: text-top;
 }
 
@@ -100,7 +100,7 @@ aside {
     max-width: 360px;
     color: var(--Snow-White, #fff);
     font-family: "Neue Montreal";
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 32px */
@@ -200,6 +200,9 @@ aside {
 }
 
 @media only screen and (max-width: 1440px) {
+    .years {
+        gap: 0;
+    }
     header {
         padding-inline: 20px;
     }
@@ -210,12 +213,6 @@ aside {
 }
 
 @media only screen and (max-width: 1200px) {
-    .plus {
-        line-height: 100px;
-        font-size: 50px;
-        vertical-align: text-top;
-    }
-
     header {
         flex-direction: column-reverse;
         gap: 24px;
@@ -236,33 +233,9 @@ aside {
 }
 
 @media only screen and (max-width: 820px) {
-    header > p {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 160%; /* 28.8px */
-    }
 }
 
 @media only screen and (max-width: 600px) {
-    .years h2 {
-        font-size: 80px;
-    }
-
-    .plus {
-        line-height: 40px;
-        font-size: 32px;
-    }
-
-    header > div > p {
-        font-size: 14px;
-    }
-
-    .years {
-        gap: 0;
-    }
 }
 
 @media only screen and (max-width: 425px) {
