@@ -68,3 +68,11 @@
         opacity: 1;
     }
 }
+
+@media only screen and (max-width: 1440px) {
+    .about {
+        min-height: 50vh;
+        max-height: 51vh;
+        margin-bottom: 200px;
+    }
+}

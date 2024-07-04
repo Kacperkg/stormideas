@@ -1,14 +1,17 @@
 .footer {
-    width: 100vw;
-    margin-top: 224px;
+    width: 99vw;
+    padding-top: 224px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    margin-inline: auto;
 }
 
 .footer__header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 200px;
 }
 
 .logo {
@@ -28,25 +31,21 @@
 }
 
 .footer__parallax h2 {
-    margin-left: 200vw;
+    margin-left: 250vw;
     color: #fff;
     text-align: center;
     font-family: "Neue Montreal";
-    font-size: clamp(50px, 8vw, 120px);
+    font-size: clamp(50px, 7vw, 120px);
     font-style: normal;
     font-weight: 400;
     line-height: 160px; /* 133.333% */
     text-wrap: nowrap;
-
-    animation: parallax linear;
-    animation-timeline: view();
-    animation-range: 10px;
 }
 
 .footer__footer {
     max-width: 90vw;
     width: 100%;
-    margin-top: 200px;
+
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -188,7 +187,10 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 610px) {
+    .footer__parallax {
+        margin-left: 220vw;
+    }
 }
 
 @media only screen and (max-width: 425px) {

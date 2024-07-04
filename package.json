@@ -5,18 +5,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "framer-motion": "^11.2.10",
+    "intersection-observer": "^0.12.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.10.3",
+    "react-multi-carousel": "^2.8.5",
+    "react-slick": "^0.30.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

@@ -1,28 +1,95 @@
-import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import logo from "./assets/Logo.svg";
 import Styles from "./footer.module.css";
 
 export default function Footer() {
+    const parallaxRef = useRef(null);
+    const footerHeaderRef = useRef(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const parallax = parallaxRef.current;
+        const footer = footerHeaderRef.current;
+
+        ScrollTrigger.matchMedia({
+            "(min-width: 1025px)": function () {
+                if (parallax && footer) {
+                    gsap.to(parallax, {
+                        xPercent: -50,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: footer,
+                            start: "top center",
+                            end: "bottom center",
+                            scrub: true,
+                        },
+                    });
+                }
+            },
+            "(min-width: 769px) and (max-width: 1024px)": function () {
+                if (parallax && footer) {
+                    gsap.to(parallax, {
+                        xPercent: -100,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: footer,
+                            start: "top center",
+                            end: "bottom center",
+                            scrub: true,
+                        },
+                    });
+                }
+            },
+
+            "(max-width: 768px)": function () {
+                if (parallax && footer) {
+                    gsap.to(parallax, {
+                        xPercent: -60,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: footer,
+                            start: "top center",
+                            end: "bottom center",
+                            scrub: true,
+                        },
+                    });
+                }
+            },
+
+            "(max-width: 700px)": function () {
+                if (parallax && footer) {
+                    gsap.to(parallax, {
+                        xPercent: -100,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: footer,
+                            start: "top center",
+                            end: "bottom center",
+                            scrub: true,
+                        },
+                    });
+                }
+            },
+        });
+
+        // Cleanup function to kill ScrollTrigger instances
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
+    }, []);
+
     return (
         <div className={Styles.footer}>
-            <div className={Styles.footer__header}>
-                <div className={Styles.footer__parallax}>
+            <div className={Styles.footer__header} ref={footerHeaderRef}>
+                <div className={Styles.footer__parallax} ref={parallaxRef}>
                     <h2>Looking for a partner to start a project with?</h2>
                 </div>
-                <motion.div
-                    className={Styles.footer__header__contact}
-                    variants={{
-                        hidden: { opacity: 0, y: 200 },
-                        visable: { opacity: 1, y: 0 },
-                    }}
-                    initial="hidden"
-                    animate="visable"
-                    transition={{
-                        duration: 1,
-                        delay: 3,
-                    }}>
+                <div className={Styles.footer__header__contact}>
                     <a href="">Let’s work together — we’re ready</a>
-                </motion.div>
+                </div>
             </div>
             <div className={Styles.footer__footer}>
                 <img src={logo} alt="" className={Styles.logo} />

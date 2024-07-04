@@ -1,6 +1,64 @@
+import { useRef } from "react";
+import Slider from "react-slick";
 import Styles from "./testimonials.module.css";
 
 function Testimonials() {
+    const settings = {
+        arrows: false,
+        infinite: true,
+        autoplay: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1000,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 750,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    variableWidth: true,
+                },
+            },
+        ],
+    };
+
+    const testimonialsList = [
+        {
+            message:
+                "Pure magic! Storm Ideas brought our website to life with captivating design and seamless functionality. Engaging fans worldwide, their dedication made dreams come true. Excited for the future!",
+            name: "Michael",
+            title: "PO at Confidential Company",
+        },
+        {
+            message:
+                "A slam dunk experience! Storm Ideas innovation and expertise turned our app vision into reality. Exceeding expectations with a user-friendly interface, they elevated fan engagement.",
+            name: "Jay",
+            title: "PO at Confidential Company",
+        },
+        {
+            message:
+                "Unforgettable collaboration! The team at Storm Ideas, their creativity and technical prowess elevated our entertainment company's online presence. Phenomenal partnership!",
+            name: "Cristina",
+            title: "PO at Confidential Company",
+        },
+    ];
+
+    let sliderRef = useRef(null);
+    const next = () => {
+        sliderRef.slickNext();
+    };
+    const previous = () => {
+        sliderRef.slickPrev();
+    };
+
     return (
         <section className={Styles.testimonials}>
             <header>
@@ -23,48 +81,30 @@ function Testimonials() {
                     </div>
                 </aside>
             </header>
+
             <div className={Styles.testimonials_container}>
-                <div className={Styles.message}>
-                    <p>
-                        Pure magic! Storm Ideas brought our website to life with
-                        captivating design and seamless functionality. Engaging
-                        fans worldwide, their dedication made dreams come true.
-                        Excited for the future!
-                    </p>
-                    <div>
-                        <h2>Michael</h2>
-                        <h3>PO at Confidential Company</h3>
-                    </div>
-                </div>
-                <div className={Styles.message}>
-                    <p>
-                        A slam dunk experience! Storm Ideas innovation and
-                        expertise turned our app vision into reality. Exceeding
-                        expectations with a user-friendly interface, they
-                        elevated fan engagement.
-                    </p>
-                    <div>
-                        <h2>Jay</h2>
-                        <h3>PO at Confidential Company</h3>
-                    </div>
-                </div>
-                <div className={Styles.message}>
-                    <p>
-                        Unforgettable collaboration! The team at Storm Ideas,
-                        their creativity and technical prowess elevated our
-                        entertainment company's online presence. Phenomenal
-                        partnership!
-                    </p>
-                    <div>
-                        <h2>Cristina</h2>
-                        <h3>PO at Confidential Company</h3>
-                    </div>
-                </div>
+                <Slider
+                    {...settings}
+                    ref={(slider) => {
+                        sliderRef = slider;
+                    }}
+                    className={Styles.slick_custom}>
+                    {testimonialsList.map((testimonial, index) => (
+                        <div className={Styles.message} key={index}>
+                            <p>{testimonial.message}</p>
+                            <div>
+                                <h2>{testimonial.name}</h2>
+                                <h3>{testimonial.title}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </Slider>
             </div>
+
             <div className={Styles.test_nav}>
                 <a>Let’s work together — get in touch</a>
                 <div className={Styles.buttons}>
-                    <div className={Styles.button}>
+                    <div className={Styles.button} onClick={previous}>
                         <svg
                             className={Styles.button__circle}
                             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +151,9 @@ function Testimonials() {
                             />
                         </svg>
                     </div>
-                    <div className={`${Styles.button} ${Styles.button__next}`}>
+                    <div
+                        className={`${Styles.button} ${Styles.button__next}`}
+                        onClick={next}>
                         <svg
                             className={Styles.button__circle}
                             xmlns="http://www.w3.org/2000/svg"
