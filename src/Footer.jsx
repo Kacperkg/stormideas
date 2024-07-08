@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef } from "react";
-import logo from "./assets/Logo.svg";
+import logo from "./assets/logo 2.svg";
 import Styles from "./footer.module.css";
 
 export default function Footer() {
@@ -106,15 +106,15 @@ export default function Footer() {
                     <div
                         className={`${Styles.footer__column} ${Styles.footer__address}`}>
                         <h3>Our address</h3>
-                        <p>Storm Ideas Limited, Anderson House</p>
-                        <p>2nd Floor Breadalbane Street</p>
-                        <p>Edinburgh United Kingdom EH6 5JR</p>
+                        <p>Wide Idea Limited, Anderson House</p>
+                        <p>3nd Floor Breadalbane Street</p>
+                        <p>Edinburgh United Kingdom EH6 8JR</p>
                     </div>
                     <div
                         className={`${Styles.footer__column} ${Styles.footer__contact}`}>
                         <h3>Let’s work together</h3>
-                        <p>+44 (0) 131 460 8282</p>
-                        <p>hello@StormIdeas.com</p>
+                        <p>+44 (0) 131 460 8202</p>
+                        <p>hello@WideIdeas.com</p>
                     </div>
                     <div
                         className={`${Styles.footer__column} ${Styles.footer__follow}`}>
@@ -125,7 +125,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className={Styles.footer__copy}>
-                    <p>© Storm Ideas Ltd 2008 — 2023</p>
+                    <p>© Wide Idea Ltd 2008 — 2023</p>
                     <p>Terms — Privacy </p>
                 </div>
             </div>

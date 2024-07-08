@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import NavBar from "./Nav";
 import Products from "./Products";
+import Services from "./Services";
 
 import Testimonials from "./Testimonials";
 
@@ -11,8 +12,11 @@ function App() {
     return (
         <>
             <NavBar></NavBar>
-            <Header></Header>
-            <Testimonials></Testimonials>
+            <div className="page__wrap">
+                <Header />
+                <Services />
+            </div>
+            <Testimonials />
             <Products></Products>
             <About></About>
             <Footer></Footer>

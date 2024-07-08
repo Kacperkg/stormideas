@@ -1,3 +1,5 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useEffect, useRef, useState } from "react";
 import Styles from "./services.module.css";
 
@@ -19,26 +21,139 @@ const services = [
 function Services() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const sectionRef = useRef(null);
+    const serviceRefs = useRef([]);
+    const headerServiceRefs = useRef([]);
+    const pServiceRefs = useRef([]);
+    const progressServiceRefs = useRef([]);
 
     useEffect(() => {
-        const handleScroll = () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const updateScrollProgress = () => {
             if (sectionRef.current) {
                 const sectionTop = sectionRef.current.offsetTop;
-                const sectionHeight = sectionRef.current.scrollHeight;
-                const scrollPx = window.scrollY - sectionTop;
-                const winHeightPx = sectionHeight - window.innerHeight;
-                const scrolled = Math.min(
-                    Math.max((scrollPx / winHeightPx) * 100, 0),
-                    100
-                );
-                setScrollProgress(scrolled);
+                const sectionHeight = sectionRef.current.offsetHeight;
+                const scrollPosition = window.scrollY;
+                const sectionInView =
+                    scrollPosition > sectionTop - window.innerHeight &&
+                    scrollPosition < sectionTop + sectionHeight;
+
+                if (sectionInView) {
+                    const progress =
+                        (scrollPosition - sectionTop + window.innerHeight) /
+                        (sectionHeight + window.innerHeight);
+                    setScrollProgress(progress * 100);
+                } else if (scrollPosition <= sectionTop - window.innerHeight) {
+                    setScrollProgress(0);
+                } else if (scrollPosition >= sectionTop + sectionHeight) {
+                    setScrollProgress(100);
+                }
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
+        const scrollListener = () => {
+            updateScrollProgress();
+        };
+
+        window.addEventListener("scroll", scrollListener);
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", scrollListener);
+        };
+    }, []);
+
+    useEffect(() => {
+        const applyAnimations = () => {
+            const isSmallScreen = window.innerWidth <= 768;
+
+            serviceRefs.current.forEach((ref, index) => {
+                if (ref) {
+                    gsap.fromTo(
+                        ref,
+                        {
+                            opacity: 0,
+                        },
+                        {
+                            opacity: 1,
+                            scrollTrigger: {
+                                trigger: ref,
+                                start: "top 70%",
+                                end: "top 15%",
+                                toggleActions: "play reverse play reverse",
+                            },
+                        }
+                    );
+                }
+            });
+
+            headerServiceRefs.current.forEach((hRef, index) => {
+                if (hRef) {
+                    gsap.fromTo(
+                        hRef,
+                        {
+                            color: "rgba(255, 255, 255, 0.5)",
+                            fontSize: "clamp(20px, 12vw, 40px)",
+                        },
+                        {
+                            color: "#fff",
+                            fontSize: "clamp(40px, 12vw, 80px)",
+                            scrollTrigger: {
+                                trigger: hRef,
+                                start: isSmallScreen ? "top 50%" : "top 55%",
+                                end: isSmallScreen ? "top 35%" : "top 40%",
+                                toggleActions: "play reverse play reverse",
+                            },
+                        }
+                    );
+                }
+            });
+
+            pServiceRefs.current.forEach((pRef, index) => {
+                if (pRef) {
+                    gsap.fromTo(
+                        pRef,
+                        {
+                            color: "rgba(255, 255, 255, 0.5)",
+                        },
+                        {
+                            color: "#fff",
+                            scrollTrigger: {
+                                trigger: pRef,
+                                start: isSmallScreen ? "top 50%" : "top 55%",
+                                end: isSmallScreen ? "top 35%" : "top 40%",
+                                toggleActions: "play reverse play reverse",
+                            },
+                        }
+                    );
+                }
+            });
+
+            progressServiceRefs.current.forEach((proRef) => {
+                if (proRef) {
+                    gsap.fromTo(
+                        proRef,
+                        {
+                            opacity: 1,
+                        },
+                        {
+                            opacity: 0,
+                            scrollTrigger: {
+                                trigger: sectionRef.current,
+                                start: "top center",
+                                end: "bottom bottom%",
+                                markers: true,
+                                toggleActions: "play reverse play reverse",
+                            },
+                        }
+                    );
+                }
+            });
+        };
+
+        applyAnimations();
+
+        return () => {
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
     }, []);
 
@@ -56,29 +171,38 @@ function Services() {
                         15<span className={Styles.plus}>+</span>
                     </h2>
                     <p>
-                        We have over a decade years of experience working on
-                        digital solutions.
+                        We have over a decade of experience working on digital
+                        solutions.
                     </p>
                 </div>
             </header>
-            <section ref={sectionRef}>
+            <section ref={sectionRef} className={Styles.service__body}>
                 <div className={Styles.service_title}>
                     <p>Our Services</p>
                     <p>012</p>
                 </div>
                 <div className={Styles.services_container}>
-                    {services.map((service) => (
+                    {services.map((service, index) => (
                         <div
+                            ref={(el) => (serviceRefs.current[index] = el)}
                             key={service.id}
                             className={`${Styles.service} ${
                                 scrollProgress > 10 ? Styles.visible : ""
                             }`}>
                             <div className={Styles.seperator}></div>
                             <div className={Styles.service_heading}>
-                                <h2 className={Styles.animatedStyleH2}>
+                                <h2
+                                    ref={(el) =>
+                                        (headerServiceRefs.current[index] = el)
+                                    }
+                                    className={`animatedStyleH2 ${Styles.animatedStyleH2}`}>
                                     {service.name}
                                 </h2>
-                                <p className={Styles.animatedStyleP}>
+                                <p
+                                    ref={(el) =>
+                                        (pServiceRefs.current[index] = el)
+                                    }
+                                    className={Styles.animatedStyleP}>
                                     {service.num}
                                 </p>
                             </div>
@@ -86,7 +210,9 @@ function Services() {
                     ))}
                 </div>
                 <div className={Styles.seperator_footer}></div>
-                <div className={Styles.service_footer}>
+                <div
+                    className={Styles.service_footer}
+                    ref={(el) => (progressServiceRefs.current[0] = el)}>
                     <h2>Are we there yet?</h2>
                     <p>
                         scroll progress{" "}

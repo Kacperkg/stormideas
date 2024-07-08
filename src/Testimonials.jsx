@@ -1,35 +1,8 @@
-import { useRef } from "react";
-import Slider from "react-slick";
+import React, { useEffect, useRef, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 import Styles from "./testimonials.module.css";
 
 function Testimonials() {
-    const settings = {
-        arrows: false,
-        infinite: true,
-        autoplay: false,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    initialSlide: 2,
-                },
-            },
-            {
-                breakpoint: 750,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    variableWidth: true,
-                },
-            },
-        ],
-    };
-
     const testimonialsList = [
         {
             message:
@@ -49,14 +22,112 @@ function Testimonials() {
             name: "Cristina",
             title: "PO at Confidential Company",
         },
+        {
+            message:
+                "Absolutely amazing! Storm Ideas transformed our online strategy, driving engagement through the roof. Highly recommend their expertise and dedication.",
+            name: "Alex",
+            title: "PO at Confidential Company",
+        },
+        {
+            message:
+                "Brilliant team! Storm Ideas' innovative approach and technical skills took our project to the next level. Thrilled with the results.",
+            name: "Samantha",
+            title: "PO at Confidential Company",
+        },
     ];
 
-    let sliderRef = useRef(null);
-    const next = () => {
-        sliderRef.slickNext();
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const sliderRef = useRef(null);
+    const [messageWidth, setMessageWidth] = useState(424); // Initial width for larger screens
+    const gapWidth = 24;
+
+    // Effect to measure message width and update on resize
+    useEffect(() => {
+        const updateMessageWidth = () => {
+            const screenWidth = window.innerWidth;
+            console.log("Screen width:", screenWidth);
+
+            if (screenWidth <= 1200) {
+                setMessageWidth(320); // Adjust width for smaller screens
+            } else if (screenWidth <= 1440) {
+                setMessageWidth(380); // Adjust width for mid-sized screens
+            } else {
+                setMessageWidth(424); // Default width for larger screens
+            }
+        };
+
+        // Set initial message width
+        updateMessageWidth();
+
+        // Update message width on window resize
+        window.addEventListener("resize", updateMessageWidth);
+
+        // Clean up
+        return () => window.removeEventListener("resize", updateMessageWidth);
+    }, []);
+
+    // Effect to handle transitions and infinite scrolling
+    useEffect(() => {
+        const slider = sliderRef.current;
+
+        const handleTransitionEnd = () => {
+            setIsTransitioning(false);
+
+            // If reached the end, jump to the beginning without transition
+            if (currentIndex === testimonialsList.length) {
+                setCurrentIndex(0);
+                slider.style.transition = "none";
+                slider.style.transform = `translateX(-${messageWidth}px)`;
+            }
+            // If reached the beginning, jump to the end without transition
+            else if (currentIndex === -1) {
+                setCurrentIndex(testimonialsList.length - 1);
+                slider.style.transition = "none";
+                slider.style.transform = `translateX(-${
+                    testimonialsList.length * (messageWidth + gapWidth)
+                }px)`;
+            }
+        };
+
+        slider.addEventListener("transitionend", handleTransitionEnd);
+
+        return () => {
+            slider.removeEventListener("transitionend", handleTransitionEnd);
+        };
+    }, [currentIndex, testimonialsList.length, messageWidth]);
+
+    // Function to scroll to the next testimonial
+    const scrollNext = () => {
+        if (isTransitioning) return;
+
+        setIsTransitioning(true);
+        setCurrentIndex((prevIndex) => prevIndex + 1);
     };
-    const previous = () => {
-        sliderRef.slickPrev();
+
+    // Function to scroll to the previous testimonial
+    const scrollPrev = () => {
+        if (isTransitioning) return;
+
+        setIsTransitioning(true);
+        setCurrentIndex((prevIndex) => prevIndex - 1);
+    };
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => scrollNext(),
+        onSwipedRight: () => scrollPrev(),
+    });
+
+    // Calculate the width for testimonials_container
+    const testimonialsContainerWidth = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 700) {
+            return `calc(1 * (${messageWidth}px + ${gapWidth}px) - ${gapWidth}px)`;
+        } else if (screenWidth <= 1100) {
+            return `calc(2 * (${messageWidth}px + ${gapWidth}px) - ${gapWidth}px)`;
+        } else {
+            return `calc(3 * (${messageWidth}px + ${gapWidth}px) - ${gapWidth}px)`;
+        }
     };
 
     return (
@@ -82,15 +153,26 @@ function Testimonials() {
                 </aside>
             </header>
 
-            <div className={Styles.testimonials_container}>
-                <Slider
-                    {...settings}
-                    ref={(slider) => {
-                        sliderRef = slider;
-                    }}
-                    className={Styles.slick_custom}>
+            <div
+                className={Styles.testimonials_container}
+                style={{ width: testimonialsContainerWidth() }}>
+                <div
+                    {...handlers}
+                    className={Styles.testimonials__outer}
+                    ref={sliderRef}
+                    style={{
+                        transform: `translateX(-${
+                            (currentIndex + 1) * (messageWidth + gapWidth)
+                        }px)`,
+                        transition: isTransitioning
+                            ? "transform 0.5s ease-in-out"
+                            : "none",
+                    }}>
                     {testimonialsList.map((testimonial, index) => (
-                        <div className={Styles.message} key={index}>
+                        <div
+                            key={index}
+                            className={Styles.message}
+                            style={{ minWidth: messageWidth }}>
                             <p>{testimonial.message}</p>
                             <div>
                                 <h2>{testimonial.name}</h2>
@@ -98,13 +180,17 @@ function Testimonials() {
                             </div>
                         </div>
                     ))}
-                </Slider>
+                </div>
             </div>
 
             <div className={Styles.test_nav}>
-                <a>Let’s work together — get in touch</a>
+                <a className={Styles.work_together_link}>
+                    Let's work together — get in touch
+                </a>
                 <div className={Styles.buttons}>
-                    <div className={Styles.button} onClick={previous}>
+                    <div
+                        className={`${Styles.button} ${Styles.button__prev}`}
+                        onClick={scrollPrev}>
                         <svg
                             className={Styles.button__circle}
                             xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +239,7 @@ function Testimonials() {
                     </div>
                     <div
                         className={`${Styles.button} ${Styles.button__next}`}
-                        onClick={next}>
+                        onClick={scrollNext}>
                         <svg
                             className={Styles.button__circle}
                             xmlns="http://www.w3.org/2000/svg"

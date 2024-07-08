@@ -1,4 +1,4 @@
-header {
+.service__section header {
     margin-inline: auto;
     max-width: 1280px;
     margin-top: 224px;
@@ -19,14 +19,14 @@ p.service__header__text {
     text-align: left;
 }
 
-header > div {
+.service__section header > div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
 }
 
-header > div > h2 {
+.service__section header > div > h2 {
     color: var(--Snow-White, #fff);
 
     font-size: 160px;
@@ -35,7 +35,7 @@ header > div > h2 {
     line-height: 140px; /* 87.5% */
 }
 
-header > div > p {
+.service__section header > div > p {
     max-width: 312px;
     text-align: left;
     color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
@@ -46,9 +46,12 @@ header > div > p {
     line-height: 160%; /* 25.6px */
 }
 
-section {
+section.service__body {
     max-width: 1280px;
     margin-inline: auto;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .service_title {
@@ -99,12 +102,6 @@ section {
     line-height: normal;
 }
 
-section {
-    min-height: 95vh;
-    display: flex;
-    flex-direction: column;
-}
-
 .seperator {
     width: 100%;
     max-width: 1320px;
@@ -118,10 +115,6 @@ section {
     max-width: 1320px;
     height: 1px;
     background: var(--snow-white-10, rgba(255, 255, 255, 0.1));
-
-    animation: progressBar linear;
-    animation-timeline: view();
-    animation-range: contain;
     opacity: 0;
 }
 
@@ -141,11 +134,6 @@ section {
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
-
-    animation: progressBar linear;
-    animation-timeline: view();
-    animation-range: contain;
-    opacity: 0;
 }
 
 .service_footer h2 {
@@ -183,166 +171,6 @@ section {
     animation-range: 10px;
 }
 
-@-webkit-keyframes fade-in-out {
-    20% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 0;
-    }
-}
-
-@keyframes fade-in-out {
-    20% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 0;
-    }
-}
-
-@-webkit-keyframes progressBar {
-    50% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    95% {
-        opacity: 0;
-    }
-}
-
-@keyframes progressBar {
-    50% {
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    95% {
-        opacity: 0;
-    }
-}
-
-@-webkit-keyframes change-styles-h2 {
-    40% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        font-family: "Neue Montreal";
-        font-size: clamp(20px, 12vw, 40px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    48% {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: clamp(40px, 12vw, 80px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    52% {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: clamp(40px, 12vw, 80px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    60% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        font-family: "Neue Montreal";
-        font-size: clamp(20px, 12vw, 40px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-}
-
-@keyframes change-styles-h2 {
-    40% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        font-family: "Neue Montreal";
-        font-size: clamp(20px, 12vw, 40px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    48% {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: clamp(40px, 12vw, 80px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    52% {
-        color: var(--Snow-White, #fff);
-        font-family: "Neue Montreal";
-        font-size: clamp(40px, 12vw, 80px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    60% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        font-family: "Neue Montreal";
-        font-size: clamp(20px, 12vw, 40px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-}
-
-@keyframes change-styles-p {
-    40% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        text-align: right;
-        font-family: "Neue Montreal";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    50% {
-        color: var(--Snow-White, #fff);
-        text-align: right;
-        font-family: "Neue Montreal";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    60% {
-        color: var(--snow-white-50, rgba(255, 255, 255, 0.5));
-        text-align: right;
-        font-family: "Neue Montreal";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-}
-
-.animatedStyleH2 {
-    animation: change-styles-h2 linear;
-    animation-timeline: view();
-    animation-range: contain;
-}
-
-.animatedStyleP {
-    animation: change-styles-p linear;
-    animation-timeline: view();
-    animation-range: contain;
-}
-
 .plus {
     font-family: "Neue Montreal";
     font-size: 80px;
@@ -354,12 +182,12 @@ section {
 
 @media only screen and (max-width: 1440px) {
     .service__section {
-        padding-inline: 20px;
+        margin-inline: 20px;
     }
 }
 
 @media only screen and (max-width: 1200px) {
-    header > div > h2 {
+    .service__section header > div > h2 {
         color: var(--Snow-White, #fff);
 
         font-size: 120px;
@@ -374,7 +202,7 @@ section {
         vertical-align: text-top;
     }
 
-    header > div {
+    .service__section header > div {
         flex-direction: row;
         align-items: center;
         justify-content: center;
@@ -397,12 +225,12 @@ section {
 }
 
 @media only screen and (max-width: 600px) {
-    header > div > h2 {
+    .service__section header > div > h2 {
         color: var(--Snow-White, #fff);
         font-size: 80px;
     }
 
-    header > div {
+    .service__section header > div {
         gap: 12px;
     }
 
@@ -412,14 +240,14 @@ section {
     }
 
     .service__section {
-        padding-inline: 10px;
+        margin-inline: 10px;
     }
 
-    header > div > p {
+    .service__section header > div > p {
         font-size: 14px;
         max-width: 29ch;
     }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 700px) {
 }
