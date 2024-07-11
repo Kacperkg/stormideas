@@ -1,93 +1,41 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import testimonialsList from "./components/testimonials-list";
 import Styles from "./testimonials.module.css";
 
 function Testimonials() {
-    const testimonialsList = [
-        {
-            message:
-                "Pure magic! Storm Ideas brought our website to life with captivating design and seamless functionality. Engaging fans worldwide, their dedication made dreams come true. Excited for the future!",
-            name: "Michael",
-            title: "PO at Confidential Company",
-        },
-        {
-            message:
-                "A slam dunk experience! Storm Ideas innovation and expertise turned our app vision into reality. Exceeding expectations with a user-friendly interface, they elevated fan engagement.",
-            name: "Jay",
-            title: "PO at Confidential Company",
-        },
-        {
-            message:
-                "Unforgettable collaboration! The team at Storm Ideas, their creativity and technical prowess elevated our entertainment company's online presence. Phenomenal partnership!",
-            name: "Cristina",
-            title: "PO at Confidential Company",
-        },
-        {
-            message:
-                "Absolutely amazing! Storm Ideas transformed our online strategy, driving engagement through the roof. Highly recommend their expertise and dedication.",
-            name: "Alex",
-            title: "PO at Confidential Company",
-        },
-        {
-            message:
-                "Brilliant team! Storm Ideas' innovative approach and technical skills took our project to the next level. Thrilled with the results.",
-            name: "Samantha",
-            title: "PO at Confidential Company",
-        },
-    ];
-
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
-    const [messageWidth, setMessageWidth] = useState(424); // Initial width for larger screens
+    const [messageWidth, setMessageWidth] = useState(424);
     const gapWidth = 24;
 
-    // Effect to measure message width and update on resize
     useEffect(() => {
         const updateMessageWidth = () => {
             const screenWidth = window.innerWidth;
-            console.log("Screen width:", screenWidth);
-
-            if (screenWidth <= 1200) {
+            if (screenWidth <= 700) {
                 setMessageWidth(320); // Adjust width for smaller screens
-            } else if (screenWidth <= 1440) {
+            } else if (screenWidth <= 900) {
+                setMessageWidth(340);
+            } else if (screenWidth <= 1100) {
                 setMessageWidth(380); // Adjust width for mid-sized screens
             } else {
                 setMessageWidth(424); // Default width for larger screens
             }
         };
 
-        // Set initial message width
         updateMessageWidth();
 
-        // Update message width on window resize
         window.addEventListener("resize", updateMessageWidth);
 
-        // Clean up
         return () => window.removeEventListener("resize", updateMessageWidth);
     }, []);
 
-    // Effect to handle transitions and infinite scrolling
     useEffect(() => {
         const slider = sliderRef.current;
 
         const handleTransitionEnd = () => {
             setIsTransitioning(false);
-
-            // If reached the end, jump to the beginning without transition
-            if (currentIndex === testimonialsList.length) {
-                setCurrentIndex(0);
-                slider.style.transition = "none";
-                slider.style.transform = `translateX(-${messageWidth}px)`;
-            }
-            // If reached the beginning, jump to the end without transition
-            else if (currentIndex === -1) {
-                setCurrentIndex(testimonialsList.length - 1);
-                slider.style.transition = "none";
-                slider.style.transform = `translateX(-${
-                    testimonialsList.length * (messageWidth + gapWidth)
-                }px)`;
-            }
         };
 
         slider.addEventListener("transitionend", handleTransitionEnd);
@@ -95,34 +43,43 @@ function Testimonials() {
         return () => {
             slider.removeEventListener("transitionend", handleTransitionEnd);
         };
-    }, [currentIndex, testimonialsList.length, messageWidth]);
+    }, []);
 
-    // Function to scroll to the next testimonial
     const scrollNext = () => {
-        if (isTransitioning) return;
+        const screenWidth = window.innerWidth;
+        let itemsPerPage = 3; // Default for larger screens
 
-        setIsTransitioning(true);
-        setCurrentIndex((prevIndex) => prevIndex + 1);
+        if (screenWidth <= 700) {
+            itemsPerPage = 1; // Adjust for smaller screens
+        } else if (screenWidth <= 1100) {
+            itemsPerPage = 2; // Adjust for mid-sized screens
+        }
+
+        const maxIndex = testimonialsList.length - itemsPerPage;
+
+        if (currentIndex < maxIndex) {
+            setCurrentIndex(currentIndex + 1);
+            setIsTransitioning(true);
+        }
     };
 
-    // Function to scroll to the previous testimonial
     const scrollPrev = () => {
-        if (isTransitioning) return;
-
-        setIsTransitioning(true);
-        setCurrentIndex((prevIndex) => prevIndex - 1);
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+            setIsTransitioning(true);
+        }
     };
 
-    const handlers = useSwipeable({
+    const swipeHandlers = useSwipeable({
         onSwipedLeft: () => scrollNext(),
         onSwipedRight: () => scrollPrev(),
+        trackMouse: true, // Ensure to track mouse events for testing on desktop
     });
 
-    // Calculate the width for testimonials_container
     const testimonialsContainerWidth = () => {
         const screenWidth = window.innerWidth;
         if (screenWidth <= 700) {
-            return `calc(1 * (${messageWidth}px + ${gapWidth}px) - ${gapWidth}px)`;
+            return `calc(1 * (${messageWidth}px + ${gapWidth}px) + ${gapWidth}px)`;
         } else if (screenWidth <= 1100) {
             return `calc(2 * (${messageWidth}px + ${gapWidth}px) - ${gapWidth}px)`;
         } else {
@@ -154,15 +111,15 @@ function Testimonials() {
             </header>
 
             <div
+                {...swipeHandlers} // Apply swipeHandlers here
                 className={Styles.testimonials_container}
                 style={{ width: testimonialsContainerWidth() }}>
                 <div
-                    {...handlers}
                     className={Styles.testimonials__outer}
                     ref={sliderRef}
                     style={{
                         transform: `translateX(-${
-                            (currentIndex + 1) * (messageWidth + gapWidth)
+                            currentIndex * (messageWidth + gapWidth)
                         }px)`,
                         transition: isTransitioning
                             ? "transform 0.5s ease-in-out"

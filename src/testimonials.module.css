@@ -229,6 +229,10 @@
     p.service__header__text {
         font-size: 42px;
     }
+
+    .testimonials_container {
+        max-width: 95vw;
+    }
 }
 
 @media only screen and (max-width: 1380px) {
