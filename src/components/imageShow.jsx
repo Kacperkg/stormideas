@@ -9,35 +9,51 @@ function ScrollSection() {
     const sectionRef = useRef(null);
     const triggerRef = useRef(null);
 
-    gsap.registerPlugin(ScrollTrigger);
-
     useEffect(() => {
-        // Check viewport width
-        if (window.innerWidth >= 1200) {
-            const pin = gsap.fromTo(
-                sectionRef.current,
-                {
-                    translateX: 0,
-                },
-                {
-                    translateX: "-80vw",
-                    ease: "none",
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: triggerRef.current,
-                        start: "top top",
-                        end: () => `+=${sectionRef.current.offsetWidth}`,
-                        scrub: 0.6,
-                        pin: true,
-                    },
-                }
-            );
+        gsap.registerPlugin(ScrollTrigger);
 
-            return () => {
-                // Clean up animation on component unmount
-                pin.kill();
-            };
-        }
+        ScrollTrigger.matchMedia({
+            // large screens (min-width: 1200px)
+            "(min-width: 1200px)": function () {
+                const pin = gsap.fromTo(
+                    sectionRef.current,
+                    {
+                        translateX: 0,
+                    },
+                    {
+                        translateX: "-80vw",
+                        ease: "none",
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: triggerRef.current,
+                            start: "top top",
+                            end: () => `+=${sectionRef.current.offsetWidth}`,
+                            scrub: 0.6,
+                            pin: true,
+                        },
+                    }
+                );
+
+                return () => {
+                    pin.kill();
+                };
+            },
+
+            // medium screens (600px - 1199px) - placeholder
+            "(min-width: 600px) and (max-width: 1199px)": function () {
+                // Define different ScrollTriggers or animations for medium screens
+            },
+
+            // small screens (max-width: 599px) - placeholder
+            "(max-width: 599px)": function () {
+                // Define different ScrollTriggers or animations for small screens
+            },
+
+            // all screens (default)
+            all: function () {
+                // Fallback or common ScrollTriggers for all screen sizes
+            },
+        });
     }, []);
 
     return (

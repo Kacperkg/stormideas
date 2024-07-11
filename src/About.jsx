@@ -16,12 +16,12 @@ export default function About() {
             scrollTrigger: {
                 trigger: textRef.current,
                 scrub: true,
-                start: "top 35%",
-                end: "bottom 95%",
+                start: "top 60%",
+                end: "bottom 60%",
             },
             opacity: 1,
-            duration: 5,
-            stagger: 0.5,
+            duration: 1,
+            stagger: 1,
         });
 
         return () => {
@@ -33,7 +33,7 @@ export default function About() {
         <div className={Styles.about}>
             <div className={Styles.about__container} ref={textRef}>
                 <p>
-                    {"As passionate, enthusiast teams and"
+                    {"As passionate, enthusiast teams and "
                         .split("")
                         .map((char, index) => (
                             <span key={index} style={{ opacity: 0.3 }}>
@@ -41,7 +41,7 @@ export default function About() {
                             </span>
                         ))}
                     <img src={layer1} alt="Layer 1" />
-                    {"individuals, we aim to create something truly exceptional for others. By blending our best professional skills"
+                    {"individuals, we aim to create something truly exceptional for others. By blending our best professional skills "
                         .split("")
                         .map((char, index) => (
                             <span key={index} style={{ opacity: 0.3 }}>
@@ -49,7 +49,7 @@ export default function About() {
                             </span>
                         ))}
                     <img src={layer2} alt="Layer 2" />
-                    {"discussions, and empathy, we fostered a unique and"
+                    {"discussions, and empathy, we fostered a unique and "
                         .split("")
                         .map((char, index) => (
                             <span key={index} style={{ opacity: 0.3 }}>
