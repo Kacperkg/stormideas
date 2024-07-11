@@ -114,7 +114,7 @@ export default function Footer() {
                         className={`${Styles.footer__column} ${Styles.footer__contact}`}>
                         <h3>Let’s work together</h3>
                         <p>+44 (0) 131 460 8202</p>
-                        <p>hello@WideIdeas.com</p>
+                        <p>hello@WideIdea.com</p>
                     </div>
                     <div
                         className={`${Styles.footer__column} ${Styles.footer__follow}`}>
