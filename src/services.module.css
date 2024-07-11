@@ -57,15 +57,18 @@ section.service__body {
 .service_title {
     position: sticky;
     margin-top: 100px;
-    top: 5vh;
+    top: 0;
+    padding-top: 5vh;
     z-index: 100;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
     display: flex;
     max-width: 1320px;
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
 
+    background-color: black;
     color: var(--Snow-White, #fff);
     font-family: "Neue Montreal";
     font-size: 16px;
@@ -126,9 +129,11 @@ section.service__body {
 
 .service_footer {
     position: sticky;
-    bottom: 5vh;
-    background-color: #000000;
-    margin-top: 40px;
+    bottom: 0;
+    padding-bottom: 5vh;
+    background-color: black;
+    margin-top: 30px;
+    padding-top: 10px;
     display: flex;
     max-width: 1320px;
     width: 100%;

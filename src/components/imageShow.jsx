@@ -30,6 +30,7 @@ function ScrollSection() {
                             end: () => `+=${sectionRef.current.offsetWidth}`,
                             scrub: 0.6,
                             pin: true,
+                            invalidateOnRefresh: true, // Add invalidateOnRefresh option here
                         },
                     }
                 );
