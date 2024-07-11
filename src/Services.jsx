@@ -92,7 +92,7 @@ function Services() {
                         hRef,
                         {
                             color: "rgba(255, 255, 255, 0.5)",
-                            fontSize: "clamp(20px, 12vw, 40px)",
+                            fontSize: "clamp(20px, 8vw, 40px)",
                         },
                         {
                             color: "#fff",
@@ -141,7 +141,6 @@ function Services() {
                                 trigger: sectionRef.current,
                                 start: "top center",
                                 end: "bottom bottom%",
-                                markers: true,
                                 toggleActions: "play reverse play reverse",
                             },
                         }

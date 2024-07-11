@@ -18,11 +18,11 @@ export default function Footer() {
             "(min-width: 1025px)": function () {
                 if (parallax && footer) {
                     gsap.to(parallax, {
-                        xPercent: -50,
+                        xPercent: -150,
                         ease: "none",
                         scrollTrigger: {
                             trigger: footer,
-                            start: "top center",
+                            start: "-20% center",
                             end: "bottom center",
                             scrub: true,
                         },
@@ -32,27 +32,27 @@ export default function Footer() {
             "(min-width: 769px) and (max-width: 1024px)": function () {
                 if (parallax && footer) {
                     gsap.to(parallax, {
-                        xPercent: -100,
+                        xPercent: -125,
                         ease: "none",
                         scrollTrigger: {
                             trigger: footer,
-                            start: "top center",
-                            end: "bottom center",
+                            start: "-20% center",
+                            end: "30% center",
                             scrub: true,
                         },
                     });
                 }
             },
 
-            "(max-width: 768px)": function () {
+            "(min-width: 701px) and (max-width: 768px)": function () {
                 if (parallax && footer) {
                     gsap.to(parallax, {
-                        xPercent: -60,
+                        xPercent: -150,
                         ease: "none",
                         scrollTrigger: {
                             trigger: footer,
-                            start: "top center",
-                            end: "bottom center",
+                            start: "-20% center",
+                            end: "40% center",
                             scrub: true,
                         },
                     });
@@ -62,12 +62,12 @@ export default function Footer() {
             "(max-width: 700px)": function () {
                 if (parallax && footer) {
                     gsap.to(parallax, {
-                        xPercent: -100,
+                        xPercent: -190,
                         ease: "none",
                         scrollTrigger: {
                             trigger: footer,
-                            start: "top center",
-                            end: "bottom center",
+                            start: "-20% center",
+                            end: "40% center",
                             scrub: true,
                         },
                     });
